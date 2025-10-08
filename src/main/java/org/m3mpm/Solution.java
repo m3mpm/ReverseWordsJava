@@ -1,19 +1,23 @@
 package org.m3mpm;
 
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
 public class Solution {
 
     private static final String WHITESPACE = " ";
+    private static final Pattern PATTERN = Pattern.compile(" +");
 
     public Solution() {}
 
-    public String reverseWords1(String s) {
+    public String reverseWords1(String str) {
 
-        if (s == null || s.length() == 0) {
+        if (str == null || str.length() == 0) {
             return "";
         }
 
-        String[] words = s.split(WHITESPACE);
-        StringBuilder reversedString = new StringBuilder();
+        String[] words = str.split(WHITESPACE);
+        StringBuilder sb = new StringBuilder();
 
         for(String word : words) {
             StringBuilder reversedWord = new StringBuilder();
@@ -22,11 +26,21 @@ public class Solution {
                 reversedWord.append(word.charAt(i));
             }
 
-            reversedString.append(reversedWord).append(WHITESPACE);
+            sb.append(reversedWord).append(WHITESPACE);
         }
 
-        return reversedString.reverse().toString();
+        return sb.toString();
 
+    }
+
+    public String reverseWords2(String str) {
+        if (str == null || str.length() == 0) {
+            return "";
+        }
+
+        return PATTERN.splitAsStream(str).
+                map(word -> new StringBuilder(word).reverse()).
+                collect(Collectors.joining(WHITESPACE));
     }
 
 }
