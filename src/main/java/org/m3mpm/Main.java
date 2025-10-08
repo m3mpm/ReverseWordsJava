@@ -12,12 +12,17 @@ public class Main {
 
         long startTime1 = System.nanoTime();
         String newString1 = solution.reverseWords1(TEXT);
+        newString1 = solution.reverseSentence(newString1);
         long endTime1 = System.nanoTime();
+
         displayExecutionTime(endTime1 - startTime1);
         System.out.println(newString1);
 
         long startTime2 = System.nanoTime();
+
         String newString2 = solution.reverseWords2(TEXT);
+        newString2 = solution.reverseSentence(newString2);
+
         long endTime2 = System.nanoTime();
         displayExecutionTime(endTime2 - startTime2);
         System.out.println(newString2);
